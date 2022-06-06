@@ -28,8 +28,10 @@ function App() {
 
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
   const [tooltipStatus, setTooltipStatus] = React.useState("");
-  const [isLoggedIn, setIsLoggenIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [email, setEmail] = React.useState("");
+
+  const history = useHistory();
 
   React.useEffect(() => {
     api
@@ -49,7 +51,7 @@ function App() {
         .then((res) => {
           if (res) {
             setEmail(res.data.email);
-            setIsLoggenIn(true);
+            setIsLoggedIn(true);
             history.push("/");
           } else {
             localStorage.removeItem("jwt");
@@ -96,7 +98,7 @@ function App() {
       .login({ email, password })
       .then((res) => {
         if (res.token) {
-          setIsLoggenIn(true);
+          setIsLoggedIn(true);
           setEmail(email);
           localStorage.setItem("jwt", res.token);
           history.push("/");
@@ -111,9 +113,9 @@ function App() {
       });
   }
 
-  function onSignout() {
+  function onSignOut() {
     localStorage.removeItem("jwt");
-    setIsLoggenIn(false);
+    setIsLoggedIn(false);
     history.push("/signin");
   }
 
@@ -179,7 +181,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header email={email} onSignout={onSignout} />
+        <Header email={email} onSignOut={onSignOut} />
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={isLoggedIn}>
             <Main

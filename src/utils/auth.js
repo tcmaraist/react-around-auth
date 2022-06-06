@@ -12,7 +12,7 @@ class Auth {
     return fetch(`${this._baseUrl}/signup`, {
       method: "POST",
       headers: this._headers,
-      body: JSON.stringify({ email, passowrd }),
+      body: JSON.stringify({ email, password }),
     }).then(this._handleServerResponse);
   }
 
