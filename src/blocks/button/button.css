@@ -7,3 +7,11 @@
   opacity: 0.6;
   cursor: pointer;
 }
+
+.button:link {
+  text-decoration: none;
+}
+
+.button:visited {
+  text-decoration: none;
+}

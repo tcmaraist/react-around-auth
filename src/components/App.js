@@ -59,7 +59,8 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [history]);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -74,7 +75,7 @@ function App() {
     setSelectedCard(card);
   }
 
-  function onRegister(email, password) {
+  function onRegister({ email, password }) {
     auth
       .register(email, password)
       .then((res) => {
@@ -95,7 +96,7 @@ function App() {
 
   function onLogin({ email, password }) {
     auth
-      .login({ email, password })
+      .login(email, password)
       .then((res) => {
         if (res.token) {
           setIsLoggedIn(true);
@@ -176,6 +177,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setSelectedCard(null);
+    setIsInfoTooltipOpen(false);
   }
 
   return (
