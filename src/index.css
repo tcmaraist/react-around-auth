@@ -6,6 +6,18 @@
 
 @import url(./blocks/header/header.css);
 @import url(./blocks/header/__logo/header__logo.css);
+@import url(./blocks/header/__auth-link/header__auth-link.css);
+@import url(./blocks/header/__auth-wrapper/header__auth-wrapper.css);
+@import url(./blocks/header/__logout/header__logout.css);
+@import url(./blocks/header/__user/header__user.css);
+
+@import url(./blocks/login-form/__button/login-form__button.css);
+@import url(./blocks/login-form/__content/login-form__content.css);
+@import url(./blocks/login-form/__form/login-form__form.css);
+@import url(./blocks/login-form/__input/login-form__input.css);
+@import url(./blocks/login-form/__text/login-form__text.css);
+@import url(./blocks/login-form/__title/login-form__title.css);
+@import url(./blocks/login-form/login-form.css);
 
 @import url(./blocks/profile/profile.css);
 @import url(./blocks/profile/__image-container/profile__image-container.css);
@@ -28,6 +40,8 @@
 @import url(./blocks/modal/__image/modal__image.css);
 @import url(./blocks/modal/__close-button/modal__close-button.css);
 @import url(./blocks/modal/__title/modal__title.css);
+@import url(./blocks/modal/__icon/modal__icon.css);
+@import url(./blocks/modal/__status-message/modal__status-message.css);
 
 @import url(./blocks/form/form.css);
 @import url(./blocks/form/__title/form__title.css);

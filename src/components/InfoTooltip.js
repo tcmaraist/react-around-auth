@@ -4,12 +4,12 @@ import ErrorIcon from "../images/Oops.svg";
 
 function InfoTooltip({ isOpen, onClose, status }) {
   return (
-    <div className={`modal ${isOpen && "modal_open"}`}>
-      <div className="modal__content">
-        <div className="modal__form">
+    <div className={`modal ${isOpen && "modal_is-open"}`}>
+      <div className="modal__body">
+        <div className="form">
           <button
             type="button"
-            className="modal__close-button"
+            className="modal__close-button button"
             onClick={onClose}
           ></button>
           {status === "success" ? (

@@ -27,7 +27,7 @@ function Login({ onLogin }) {
           <input
             className="login-form__input"
             name="name"
-            placeholder="Email"
+            placeholder="email"
             id="email"
             type="text"
             value={email}
@@ -37,7 +37,7 @@ function Login({ onLogin }) {
           <input
             className="login-form__input"
             name="password"
-            placeholder="Password"
+            placeholder="password"
             id="password"
             type="password"
             value={password}

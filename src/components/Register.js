@@ -20,7 +20,7 @@ function Register({ onRegister }) {
   }
   return (
     <div className="login-form">
-      <form className="loginForm__form" onSubmit={handleSubmit}>
+      <form className="login-form__form" onSubmit={handleSubmit}>
         <div className="login-form__content">
           <h3 className="login-form__title">Sign up</h3>
           <input
