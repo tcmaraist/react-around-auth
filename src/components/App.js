@@ -10,7 +10,7 @@ import auth from "../utils/auth";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
-import PopupWithForm from "./PopupWithForm";
+import DeleteConfirmationPopup from "./PopupWithDelete";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
@@ -22,6 +22,8 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] =
     React.useState(false);
+  const [isConfirmDeleteOpen, setIsConfirmDeleteOpen] = React.useState(false);
+  const [cardConfirmDelete, setCardConfirmDelete] = React.useState(null);
   const [selectedCard, setSelectedCard] = React.useState(null);
   const [cards, setCards] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({});
@@ -77,7 +79,7 @@ function App() {
 
   function onRegister({ email, password }) {
     auth
-      .register(email, password)
+      .register({ email, password })
       .then((res) => {
         if (res.data._id) {
           setTooltipStatus("success");
@@ -89,6 +91,7 @@ function App() {
         }
       })
       .catch((err) => {
+        debugger;
         setTooltipStatus("fail");
         setIsInfoTooltipOpen(true);
       });
@@ -96,7 +99,7 @@ function App() {
 
   function onLogin({ email, password }) {
     auth
-      .login(email, password)
+      .login({ email, password })
       .then((res) => {
         if (res.token) {
           setIsLoggedIn(true);
@@ -162,12 +165,17 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  function handleCardDeleteClick(card) {
+    setIsConfirmDeleteOpen(true);
+    setCardConfirmDelete(card);
+  }
+
   function handleCardDelete(card) {
     api
       .removeCard(card._id)
       .then(() => {
         //compare item to card, or item._id to card._id?
-        setCards(cards.filter((item) => item._id !== card._id));
+        setCards((cards) => cards.filter((item) => item._id !== card._id));
       })
       .catch((err) => console.error(err));
   }
@@ -176,6 +184,7 @@ function App() {
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
+    setIsConfirmDeleteOpen(false);
     setSelectedCard(null);
     setIsInfoTooltipOpen(false);
   }
@@ -192,7 +201,7 @@ function App() {
               onEditAvatarClick={handleEditAvatarClick}
               onCardClick={handleCardClick}
               onCardLike={handleCardLike}
-              onCardDelete={handleCardDelete}
+              onCardDeleteClick={handleCardDeleteClick}
               cards={cards}
             />
           </ProtectedRoute>
@@ -224,11 +233,12 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
-        <PopupWithForm
-          title="Are You Sure?"
-          name="delete-confirmation"
-          buttonText="Yes"
-        />
+        <DeleteConfirmationPopup>
+          isOpen={isConfirmDeleteOpen}
+          onClose={closeAllPopups}
+          onCardDelete={handleCardDelete}
+          card={cardConfirmDelete}
+        </DeleteConfirmationPopup>
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <InfoTooltip
