@@ -1,6 +1,6 @@
 import React from "react";
-import SuccessIcon from "../images/Success.svg";
-import ErrorIcon from "../images/Oops.svg";
+import successIcon from "../images/Success.svg";
+import errorIcon from "../images/Oops.svg";
 
 function InfoTooltip({ isOpen, onClose, status }) {
   return (
@@ -14,14 +14,18 @@ function InfoTooltip({ isOpen, onClose, status }) {
           ></button>
           {status === "success" ? (
             <div>
-              <img className="modal__icon" src={SuccessIcon} alt="" />
+              <img
+                className="modal__icon"
+                src={successIcon}
+                alt="Success icon"
+              />
               <p className="modal__status-message">
                 Success! You have been registered.
               </p>
             </div>
           ) : (
             <div>
-              <img className="modal__icon" src={ErrorIcon} alt="" />
+              <img className="modal__icon" src={errorIcon} alt="Error icon" />
               <p className="modal__status-message">
                 Oops, something went wrong! Please try again.
               </p>

@@ -17,7 +17,7 @@ function PopupWithForm({
           className="modal__close-button button"
           onClick={onClose}
         />
-        <form className="form" name={name} noValidate onSubmit={onSubmit}>
+        <form className="form" name={name} onSubmit={onSubmit}>
           <h2 className="form__title">{title}</h2>
           {children}
           <button type="submit" className="button form__save-button">

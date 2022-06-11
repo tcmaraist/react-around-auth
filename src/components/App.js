@@ -83,16 +83,15 @@ function App() {
       .then((res) => {
         if (res.data._id) {
           setTooltipStatus("success");
-          setIsInfoTooltipOpen(true);
           history.push("/signin");
         } else {
           setTooltipStatus("fail");
-          setIsInfoTooltipOpen(true);
         }
       })
       .catch((err) => {
-        debugger;
         setTooltipStatus("fail");
+      })
+      .finally((res) => {
         setIsInfoTooltipOpen(true);
       });
   }
@@ -188,6 +187,18 @@ function App() {
     setSelectedCard(null);
     setIsInfoTooltipOpen(false);
   }
+
+  React.useEffect(() => {
+    const closeByEscape = (e) => {
+      if (e.key === "Escape") {
+        closeAllPopups();
+      }
+    };
+
+    document.addEventListener("keydown", closeByEscape);
+
+    return () => document.removeEventListener("keydown", closeByEscape);
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
