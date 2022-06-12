@@ -8,7 +8,7 @@ function Main({
   onEditAvatarClick,
   onCardClick,
   onCardLike,
-  onCardDeleteClick,
+  onCardDelete,
   cards,
 }) {
   const currentUser = React.useContext(CurrentUserContext);
@@ -60,7 +60,7 @@ function Main({
               card={card}
               onCardClick={onCardClick}
               onCardLike={onCardLike}
-              onCardDeleteClick={onCardDeleteClick}
+              onCardDelete={onCardDelete}
             />
           ))}
         </ul>

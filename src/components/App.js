@@ -42,7 +42,7 @@ function App() {
         setCurrentUser(userData);
         setCards(cardData);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }, []);
 
   React.useEffect(() => {
@@ -59,7 +59,7 @@ function App() {
             localStorage.removeItem("jwt");
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.error(err));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history]);
@@ -161,10 +161,11 @@ function App() {
           state.map((item) => (item._id === card._id ? newCard : item))
         );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.error(err));
   }
 
-  function handleCardDeleteClick(card) {
+  function handleDelete(card) {
+    console.log("delete has been clicked");
     setIsConfirmDeleteOpen(true);
     setCardConfirmDelete(card);
   }
@@ -212,7 +213,7 @@ function App() {
               onEditAvatarClick={handleEditAvatarClick}
               onCardClick={handleCardClick}
               onCardLike={handleCardLike}
-              onCardDeleteClick={handleCardDeleteClick}
+              onCardDelete={handleDelete}
               cards={cards}
             />
           </ProtectedRoute>
