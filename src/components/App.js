@@ -164,7 +164,7 @@ function App() {
       .catch((err) => console.error(err));
   }
 
-  function handleDelete(card) {
+  function handleDeleteClick(card) {
     console.log("delete has been clicked");
     setIsConfirmDeleteOpen(true);
     setCardConfirmDelete(card);
@@ -176,6 +176,7 @@ function App() {
       .then(() => {
         //compare item to card, or item._id to card._id?
         setCards((cards) => cards.filter((item) => item._id !== card._id));
+        closeAllPopups();
       })
       .catch((err) => console.error(err));
   }
@@ -213,7 +214,7 @@ function App() {
               onEditAvatarClick={handleEditAvatarClick}
               onCardClick={handleCardClick}
               onCardLike={handleCardLike}
-              onCardDelete={handleDelete}
+              onCardDelete={handleDeleteClick}
               cards={cards}
             />
           </ProtectedRoute>
@@ -245,12 +246,12 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
-        <DeleteConfirmationPopup>
+        <DeleteConfirmationPopup
           isOpen={isConfirmDeleteOpen}
           onClose={closeAllPopups}
           onCardDelete={handleCardDelete}
           card={cardConfirmDelete}
-        </DeleteConfirmationPopup>
+        />
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         <InfoTooltip

@@ -33,10 +33,10 @@
 
 @import url(./blocks/modal/modal.css);
 @import url(./blocks/modal/_is-open/modal_is-open.css);
-@import url(./blocks/modal/_type/modal_type_avatar-edit.css);
-@import url(./blocks/modal/_type/modal_type_delete-confirmation.css);
+
 @import url(./blocks/modal/__body/modal__body.css);
 @import url(./blocks/modal/__body/_type/modal__body_type_preview.css);
+
 @import url(./blocks/modal/__image/modal__image.css);
 @import url(./blocks/modal/__close-button/modal__close-button.css);
 @import url(./blocks/modal/__title/modal__title.css);
